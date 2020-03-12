@@ -26,7 +26,7 @@ $ sudo yum install docker
   ```bash
   $ docker pull centos
   ```
-- docker images 명령으로 이미지 목록 축력하기
+- docker images 명령으로 이미지 목록 출력하기
   ```bash
   $ docker images
   ```
@@ -82,5 +82,5 @@ $ sudo yum install docker
   | 문법 | 설명 |
   | ------------- |:-------------:|
   | > | 출력 리다이렉션, 명령 실행의 표춘 출력(stdout)을 파일로 저장합니다. 유닉스계열 운영체제는 장치도 파일로 처리하기 때문에 명령 실행 결과를 특정 장치로 보낼 수도 있습니다. <br/> $ echo "hello" > ./hello.txt <br/> $ echo "hello" > /dev/null|
-  | < | 입력 리다이렉션, 파일의 내용을 읽어 명령의 표준 입력(stdin)으로 사용합니다. |  
-   | zebra stripes | are neat |
+  | < | 입력 리다이렉션, 파일의 내용을 읽어 명령의 표준 입력(stdin)으로 사용합니다. <br/> $ cat < ./hello.txt|  
+   | >> | 명령 실행의 표준 출력(stdout)을 파일에 추가합니다. >는 이미 있는 파일에 내용을 덮어 쓰지만 >>는 파일 뒷 부분에 내용을 추가 합니다. <br/> $ echo "world" >> ./hello.txt |
