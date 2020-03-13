@@ -78,13 +78,6 @@ $ sudo yum install docker
 
 ### 3. 도커 이미지 생성하기
 
-|while | while 반복문입니다. <br/><pre><code> while : <br/>&nbsp;&nbsp;&nbsp;echo "Hello World";<br/> sleep 1;<br> done </code></pre>|
-|<<< | 문자열을 명령(프로세스)의 표준 입력으로 보냅니다.<br/><pre><code> $ cat <<< "User name is $USER"<br/>&nbsp;&nbsp;&nbsp;User name is myname </code></pre>|
-|<<EOF<br/>EOF | 여러 줄의 문자열을 명령의 표준 입력으로 보냅니다.<br/><br/><pre><code> $ cat > ./hello.txt <<EOF<br/>&nbsp;&nbsp;&nbsp;&nbsp;Hello World<br>&nbsp;&nbsp;&nbsp;&nbsp;Host name is \$(hostname)<br/>&nbsp;&nbsp;&nbsp;&nbsp;User name is \$(USER)<br/>&nbsp;&nbsp;&nbsp;EOF<br/><br/></code></pre>cat은 파일이나 표준 입력의 내용을 출력하는 명령입니다. cat의 표준 출력을 ./hello.txt로 저장하고, <<EOF로 문자열을 cat의 표준 입력으로 보냅니다. 이렇게 하면 문자열 3줄이 ./hello.txt 파일에 저장됩니다.|
-|export | 설정한 값을 환경 변수로 만듭니다. export <변수>=<값> 형식<br/>\$ export HELLO=world|
-|printf | 지정한 형식대로 값을 출력합니다. 파이프와 연동하여 명령(프로세스)에 값을 입력하는 효과를 낼 수 있습니다.<br/><pre><code> $ print 80\\neampleuser\\ny \| example-config<br/>&nbsp;&nbsp;&nbsp;PORT: 80<br/>&nbsp;&nbsp;&nbsp;User: exampleuser<br/>&nbsp;&nbsp;&nbsp;Save Configuration (y/n): y </code></pre>예를 들어 example-config는 Port, User, Save Configuration을 사용자에게 입력을 받습니다. printf로 미리 값을 설정하여 파이프로 example-config에 넘겨주면 사용자가 입력하지 않아도 자동으로 값이 입력되니다. 줄바꿈(개행)은\\n 으로 표현합니다.|
-|sed | 텍스트 파일에서 문자열을 변경합니다. hello.txt파일의 내용 중에서 hello하는 문자열을 찾아서 world 문자열로 바꾸려면 다음과 같이 실행합니다.<br/><pre><code>\$ sed -i "s/hello/world/g" hello.txt<code/></pre>|
-
 - 3.1) Bash 익히기
 
   <table>
@@ -182,6 +175,36 @@ $ sudo yum install docker
   <td>for</td><td>for 반복문입니다. 변수 안에 있는 값을 반복하거나 범위를 지정하여 반복할 수 있습니다.<pre><code>for i in ${ls}<br/>do
   &nbsp;&nbsp;echo $i
   done</code></pre></td>
+  </tr>
+  <tr>
+  <td>while</td><td>while 반복문입니다. <br/><pre><code> while : <br/>&nbsp;&nbsp;&nbsp;echo "Hello World";<br/> sleep 1;<br> done </code></pre></td>
+  </tr>
+  <tr>
+  <td><<<</td><td>문자열을 명령(프로세스)의 표준 입력으로 보냅니다.<pre><code> $ cat <<< "User name is $USER"
+  &nbsp;&nbsp;&nbsp;User name is myname </code></pre>
+  </td>
+  </tr>
+  <tr>
+  <td> &lt;&lt;EOF EOF </td><td>여러 줄의 문자열을 명령의 표준 입력으로 보냅니다.<pre><code>$ cat > ./hello.txt &lt;&lt;EOF
+  &nbsp;&nbsp;&nbsp;&nbsp;Hello World
+  &nbsp;&nbsp;&nbsp;&nbsp;Host name is \$(hostname)
+  &nbsp;&nbsp;&nbsp;&nbsp;User name is \$(USER)
+  &nbsp;&nbsp;&nbsp;EOF</code></pre>cat은 파일이나 표준 입력의 내용을 출력하는 명령입니다. cat의 표준 출력을 ./hello.txt로 저장하고, <<EOF로 문자열을 cat의 표준 입력으로 보냅니다. 이렇게 하면 문자열 3줄이 ./hello.txt 파일에 저장됩니다.</pre>
+  </td>
+  </tr>
+  <tr>
+  <td>export</td><td>설정한 값을 환경 변수로 만듭니다. export <변수>=<값> 형식<pre><code>$ export HELLO=world</code></pre></td>
+  </tr>
+  <tr>
+  <td>printf</td><td>지정한 형식대로 값을 출력합니다. 파이프와 연동하여 명령(프로세스)에 값을 입력하는 효과를 낼 수 있습니다.
+  <pre><code>$ print 80\\neampleuser\\ny | example-config
+  &nbsp;&nbsp;&nbsp;PORT: 80
+  &nbsp;&nbsp;&nbsp;User: exampleuser
+  &nbsp;&nbsp;&nbsp;Save Configuration (y/n): y</code></pre>
+  예를 들어 example-config는 Port, User, Save Configuration을 사용자에게 입력을 받습니다. printf로 미리 값을 설정하여 파이프로 example-config에 넘겨주면 사용자가 입력하지 않아도 자동으로 값이 입력되니다. 줄바꿈(개행)은\\n 으로 표현합니다.</td>
+  </tr>
+  <tr>
+  <td>sed</td><td>텍스트 파일에서 문자열을 변경합니다. hello.txt파일의 내용 중에서 hello하는 문자열을 찾아서 world 문자열로 바꾸려면 다음과 같이 실행합니다.<pre><code>$ sed -i "s/hello/world/g" hello.txt<code/></pre></td>
   </tr>
   </tbody>
   </table>
