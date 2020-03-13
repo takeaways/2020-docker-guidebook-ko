@@ -87,7 +87,7 @@ $ sudo yum install docker
   |2>| 명령 실행의 표준 에러(stderr)를 파일로 저장합니다.|
   |2>>| 명령 실행의 표준 에러(stderr)를 파일에 추가합니다.|
   |&>| 표준 출려과 표준 에러를 모두 파일로 저장합니다.|
-  |1>$2| 표준 출력을 표준 에러로 보냅니다. echo 명령으로 문자열을 표준 출력으로 출력했지만 표준 에러로 보냈기 때문에 변수에는 문자열이 들어가지 않습니다. <br/> <pre><code> $ hello=$(echo "Hello WOrld" 1>&2)</code></pre><pre><code> $ echo \$hello</code></pre>|
+  |1>$2| 표준 출력을 표준 에러로 보냅니다. echo 명령으로 문자열을 표준 출력으로 출력했지만 표준 에러로 보냈기 때문에 변수에는 문자열이 들어가지 않습니다. <br/> <pre><code> $ hello=$(echo "Hello WOrld" 1>&2)<br/> $ echo \$hello</code></pre>|
   |2>&1|표준 에러를 표준 출력으로 보냅니다. abcd라는 명령은 없음으로 에러가 발생하지만 에러를 표준출력으로 보낸 뒤 다시 /dev/null로 보냈기 떄문에 아무것도 출력 되지 않습니다. <br/> <pre><code>$ abcd > /dev/null 2>&1</code></pre>|
   | \| | 파이프 명령 실행의 표준 출력을 다른 명령의 표준 입력으로 보냅니다. 즉 첫 번쨰 명령의 출력 같을 두 번 쨰 명령에서 처리합니다. <br/><pre><code> $ ls -al \| grep.txt </code></pre>|
   |\$|bash의 변수 입니다. 값을 저장할 떄는 $를 붙이지 않고, 변수를 가져다 쓸 떄만 \$를 붙입니다. <br/> <pre><code> $ hello= "Hello World" <br/> $ echo $hello <br/> Hello World</code></pre>|
