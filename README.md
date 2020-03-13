@@ -78,8 +78,6 @@ $ sudo yum install docker
 
 ### 3. 도커 이미지 생성하기
 
-|if | if 조건문입니다. 변수와 변수끼리 또는 문자열과 비교할 때 사용합니다. <br/><pre><code> if [$a -eq $b]; then <br/> echo \$a<br/> fi<br/></code></pre><b>숫자 비교</b><ul><li> -eq : 같다</li><li>-ne : 같지 않다.</li><li>-gt : 초과</li><li>-ge : 이상</li><li>-lt : 미만</li><li>-le : 이하</li></ul><br><b>문자열 비교</b><ul><li> =, == : 같다</li><li>!= : 같지 않다</li><li>-z : 문자열이 NULL 일 때</li><li>-n : 문자열이 NULL이 아닐 때</li></ul>|
-|for | for 반복문입니다. 변수 안에 있는 값을 반복하거나 범위를 지정하여 반복할 수 있습니다.<br/><pre><code>for i in ${ls}<br/>do<br>&nbsp;&nbsp;echo $i<br/>done</code></pre>|
 |while | while 반복문입니다. <br/><pre><code> while : <br/>&nbsp;&nbsp;&nbsp;echo "Hello World";<br/> sleep 1;<br> done </code></pre>|
 |<<< | 문자열을 명령(프로세스)의 표준 입력으로 보냅니다.<br/><pre><code> $ cat <<< "User name is $USER"<br/>&nbsp;&nbsp;&nbsp;User name is myname </code></pre>|
 |<<EOF<br/>EOF | 여러 줄의 문자열을 명령의 표준 입력으로 보냅니다.<br/><br/><pre><code> $ cat > ./hello.txt <<EOF<br/>&nbsp;&nbsp;&nbsp;&nbsp;Hello World<br>&nbsp;&nbsp;&nbsp;&nbsp;Host name is \$(hostname)<br/>&nbsp;&nbsp;&nbsp;&nbsp;User name is \$(USER)<br/>&nbsp;&nbsp;&nbsp;EOF<br/><br/></code></pre>cat은 파일이나 표준 입력의 내용을 출력하는 명령입니다. cat의 표준 출력을 ./hello.txt로 저장하고, <<EOF로 문자열을 cat의 표준 입력으로 보냅니다. 이렇게 하면 문자열 3줄이 ./hello.txt 파일에 저장됩니다.|
@@ -176,6 +174,14 @@ $ sudo yum install docker
   </tr>
   <tr>
   <td>{문자열1,문자열2}</td><td>{}안에 문자열을 여러 개 지정하여 명령 실행 횟수를 줄입니다. 다음은 hello.txt, world.txt 두 파일을 한 번에 hello-dir디렉 터리에 복사합니다.<pre><code> $ cp ./{hello.txt, world.txt} hello-dir/ </code></pre></td>
+  </tr>
+  <tr>
+  <td>if</td><td>if 조건문입니다. 변수와 변수끼리 또는 문자열과 비교할 때 사용합니다.<pre><code> if [$a -eq $b]; then echo \$a<br/> fi<br/></code></pre><b>숫자 비교</b><ul><li> -eq : 같다</li><li>-ne : 같지 않다.</li><li>-gt : 초과</li><li>-ge : 이상</li><li>-lt : 미만</li><li>-le : 이하</li></ul><br><b>문자열 비교</b><ul><li> =, == : 같다</li><li>!= : 같지 않다</li><li>-z : 문자열이 NULL 일 때</li><li>-n : 문자열이 NULL이 아닐 때</li></ul></td>
+  </tr>
+  <tr>
+  <td>for</td><td>for 반복문입니다. 변수 안에 있는 값을 반복하거나 범위를 지정하여 반복할 수 있습니다.<pre><code>for i in ${ls}<br/>do
+  &nbsp;&nbsp;echo $i
+  done</code></pre></td>
   </tr>
   </tbody>
   </table>
