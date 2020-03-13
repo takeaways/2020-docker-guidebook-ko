@@ -104,3 +104,9 @@ $ sudo yum install docker
   |{1..10}|연속된 숫자를 표현합니다. {시작숫자..끝 숫자} 형식|
   |{문자열1, 문자열2}|{}안에 문자열을 여러 개 지정하여 명령 실행 횟수를 줄입니다. 다음은 hello.txt, world.txt 두 파일을 한 번에 hello-dir디렉 터리에 복사합니다. <br/>\$ cp ./{hello.txt, world.txt} hello-dir/ |
   |if| if 조건문입니다. 변수와 변수끼리 또는 문자열과 비교할 때 사용합니다. <br/> if [$a -eq $b]; then <br/>echo \$a <br/>fi<br/><b>숫자 비교</b><ul><li> -eq : 같다</li><li>-ne : 같지 않다.</li><li>-gt : 초과</li><li>-ge : 이상</li><li>-lt : 미만</li><li>-le : 이하</li></ul><br><b>문자열 비교</b><ul><li> =, == : 같다</li><li>!= : 같지 않다</li><li>-z : 문자열이 NULL 일 때</li><li>-n : 문자열이 NULL이 아닐 때</li></ul>|
+  |for|for 반복문입니다. 변수 안에 있는 값을 반복하거나 범위를 지정하여 반복할 수 있습니다.<br/>for i in ${ls}<br/>do<br>&nbsp;&nbsp;echo $i<br/>done|
+  |while|while 반복문입니다. <br/>while : <br/>&nbsp;&nbsp;&nbsp;echo "Hello World";<br/>sleep 1;<br>done|
+  |<<<|문자열을 명령(프로세스)의 표준 입력으로 보냅니다.<br/>$ cat <<< "User name is $USER"<br/>User name is myname|
+  |<<EOF<br/>EOF|여러 줄의 문자열을 명령의 표준 입력으로 보냅니다.<br/><br/>cat > ./hello.txt <<EOF<br/>Hello World<br>Host name is \$(hostname)<br/>User name is \$(USER)<br/>EOF<br/><br/>cat은 파일이나 표준 입력의 내용을 출력하는 명령입니다. cat의 표준 출력을 ./hello.txt로 저장하고, <<EOF로 문자열을 cat의 표준 입력으로 보냅니다. 이렇게 하면 문자열 3줄이 ./hello.txt 파일에 저장됩니다.|
+  |export|설정한 값을 환경 변수로 만듭니다. export <변수>=<값> 형식<br/>\$ export HELLO=world|
+  |printf|지정한 형식대로 값을 출력합니다. 파이프와 연동하여 명령(프로세스)에 값을 입력하는 효과를 낼 수 있습니다.<br/>\$ print 80\\neampleuser\\ny \| example-config<br/>PORT: 80<br/>User: exampleuser<br/>Save Configuration (y/n): y <br/><br/>예를 들어 example-config는 Port, User, Save Configuration을 사용자에게 입력을 받습니다. printf로 미리 값을 설정하여 파이프로 example-config에 넘겨주면 사용자가 입력하지 않아도 자동으로 값이 입력되니다. 줄바꿈(개행)은\\n 으로 표현합니다.|
