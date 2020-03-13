@@ -78,7 +78,7 @@ $ sudo yum install docker
 
 ### 3. 도커 이미지 생성하기
 
-- 3.1) Bash 익히기
+- ### 3.1) Bash 익히기
 
   <table>
   <thead>
@@ -179,7 +179,7 @@ $ sudo yum install docker
   done</code></pre></td>
   </tr>
   <tr>
-  <td>while</td><td>while 반복문입니다.<pre><code> while :
+  <td>while</td><td>while 반복문입니다.<pre><code>while :
   &nbsp;&nbsp;&nbsp;echo "Hello World";
   sleep 1;
   done</code></pre></td>
@@ -213,3 +213,31 @@ $ sudo yum install docker
   </tr>
   </tbody>
   </table>
+
+- ### 3.2) Dockerfile 작성하기
+
+  1. dockerfile은 Docker 이미지 설정 파일 입니다. Dockerfile에 설정된 내용대로 이미지를 생성합니다.
+     ```bash
+     ~$ mkdir example
+     ~$ cd example
+     ```
+  2. dockerfile 작성
+
+     ```bash
+     FROM ubuntu:14.04
+     LABEL maintainer="jgi92@naver.com"
+
+     RUN apt-get update
+     RUN apt-get install -y nginx
+     RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+     RUN chown -R www-data:www-data /var/lib/nginx
+
+     VOLUME [ "/data", "/etc/nginx/site-enabled", "/var/log/nginx" ]
+
+     WORKDIR /etc/nginx
+
+     CMD ["nginx"]
+
+     EXPOSE 80
+     EXPOSE 433
+     ```
