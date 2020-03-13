@@ -80,7 +80,7 @@ $ sudo yum install docker
 
 - 3.1) Bash 익히기
   | 문법 | 설명 |
-  | :-------------: |:-------------|
+  | :------------------------: |:-------------|
   | > | 출력 리다이렉션, 명령 실행의 표춘 출력(stdout)을 파일로 저장합니다. 유닉스계열 운영체제는 장치도 파일로 처리하기 때문에 명령 실행 결과를 특정 장치로 보낼 수도 있습니다. <br/> $ echo "hello" > ./hello.txt <br/> $ echo "hello" > /dev/null|
   | < | 입력 리다이렉션, 파일의 내용을 읽어 명령의 표준 입력(stdin)으로 사용합니다. <br/> $ cat < ./hello.txt|  
    | >> | 명령 실행의 표준 출력(stdout)을 파일에 추가합니다. >는 이미 있는 파일에 내용을 덮어 쓰지만 >>는 파일 뒷 부분에 내용을 추가 합니다. <br/> $ echo "world" >> ./hello.txt |
@@ -99,4 +99,7 @@ $ sudo yum install docker
   |" "|문자열입니다. 명령에 문자열 매개 변수를 입력하거나 변수에 저장할 때 주로 사용합니다. '' 와는 달리 " "안에 변수가 들어 있으면 변수의 내용으로 바뀝니다. 또한 "와 $()도 실행 결과 값이 사용됩니다. <br/> $ echo "Hello world" <br/> $ echo "$USER"|
   |"''"|""안에 ''가 들어갈 수 있습니다. 명령 안에서 다시 명령을 실행하고 매개 변수를 지정할 떄 사용합니다. $ bash -c "/bin/echo Hello 'World"|
   |\"<br/>\$hello|''안에서 "를 사용할 때 \"처럼 앞에 \를 붙여줍니다. <br/> $ bash -c "/bin/echo '{\"user\":\"$USER\"}'"|
-  |${}|변수 치환입니다. " "문자열 안에서 변수를 출력할 때 주로 사용합니다. ${} 대신 $만 사용해도 됩니다.<br/>$ strt="World"<br/>$ echo "Hello ${str}"<br/><br/>스크립트에서 변수의 기본 값을 설정할 떄도 사용합니다. 다음은 HELLO변수가 있으면 그대로 사용하고 변수가 없으면 기본 값으로 설정한 abcd를 대입합니다.<br/>$ HELLO=<br/>$ HELLO=${HELLO-"abcd"}<br/>$ echo $HELLO<br/><br/>값이 NULL인 HELLO 변수가 이미 있기 때문에 기본 값을대입하지 않습니다. 다음은 변수의 값이 있으면 그대로 사용하고, 값이 NULL이면 기본 값으로설정한 abcd를 대입합ㄴ디ㅏ.<br/>$ WORLD=<br/> $ WORLD=${WORLD:-"abcd"}<br/>$ echo \$WORLD|
+  |${}|변수 치환입니다. " "문자열 안에서 변수를 출력할 때 주로 사용합니다. ${} 대신 $만 사용해도 됩니다.<br/>$ strt="World"<br/>$ echo "Hello ${str}"<br/><br/>스크립트에서 변수의 기본 값을 설정할 떄도 사용합니다. 다음은 HELLO변수가 있으면 그대로 사용하고 변수가 없으면 기본 값으로 설정한 abcd를 대입합니다.<br/>$ HELLO=<br/>$ HELLO=${HELLO-"abcd"}<br/>$ echo $HELLO<br/><br/>값이 NULL인 HELLO 변수가 이미 있기 때문에 기본 값을대입하지 않습니다. 다음은 변수의 값이 있으면 그대로 사용하고, 값이 NULL이면 기본 값으로설정한 abcd를 대입합니다.<br/>$ WORLD=<br/> $ WORLD=${WORLD:-"abcd"}<br/>$ echo \$WORLD|
+  |\\|한 줄로된 명령을 여러 줄로 표현할 때 사용합니다. <br/> $ dockerrun -d -name hello busybox:latest <br/> $ docker run \\<br/>-d \\<br/>--name hello \\<br/>busybox:latest |
+  |{1..10}|연속된 숫자를 표현합니다. {시작숫자..끝 숫자} 형식|
+  |{문자열1, 문자열2}|{}안에 문자열을 여러 개 지정하여 명령 실행 횟수를 줄입니다. 다음은 hello.txt, world.txt 두 파일을 한 법ㄴ에 hello-dir디렉 터리에 복사합니다. <br/>\$ cp ./{hello.txt, world.txt} hello-dir/ |
