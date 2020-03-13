@@ -177,7 +177,10 @@ $ sudo yum install docker
   done</code></pre></td>
   </tr>
   <tr>
-  <td>while</td><td>while 반복문입니다. <br/><pre><code> while : <br/>&nbsp;&nbsp;&nbsp;echo "Hello World";<br/> sleep 1;<br> done </code></pre></td>
+  <td>while</td><td>while 반복문입니다.<pre><code> while :
+  &nbsp;&nbsp;&nbsp;echo "Hello World";
+  sleep 1;
+  done</code></pre></td>
   </tr>
   <tr>
   <td><<<</td><td>문자열을 명령(프로세스)의 표준 입력으로 보냅니다.<pre><code> $ cat <<< "User name is $USER"
