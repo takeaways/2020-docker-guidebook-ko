@@ -1,6 +1,6 @@
 # docker-guidebook-ko
 
-### 1. 도커 설치하기
+# 1. 도커 설치하기
 
 - docker를 설치하는 방법은 두 가지가 있다.
 
@@ -13,7 +13,7 @@
 $ sudo yum install docker
 ```
 
-### 2. 도커 사용해보기
+# 2. 도커 사용해보기
 
 - 도커의 명령은 <b>docker run, docker push</b>와 같이 <b>docker &lt;명령&gt; </b> 형식이며, 항상 "root"권한으로 실행해야합니다.
 - 도커의 기본적인 사용 방법을 알아보기 위해서 Docker Hub에서 제공하는 이미지를 받아서 실행
@@ -76,7 +76,7 @@ $ sudo yum install docker
   $ docker rm hello
   ```
 
-### 3. 도커 이미지 생성하기
+# 3. 도커 이미지 생성하기
 
 - ### 3.1) Bash 익히기
 
@@ -223,6 +223,17 @@ $ sudo yum install docker
      ```
   2. dockerfile 작성
 
+     - FROM : 어떤 이미지를 기반ㅂ으로 할지 설정합니다. Docker 이미지는 기존에 만들어진 이미지를 기반으로 생성합니다. <이미지 이름>:<태그> 형식으로 설정합니다.
+     - maintainer : 메인테이너 정보입니다.
+     - RUN : 셸 스크립트 혹은 명령을 실행합니다.
+       > 이미지 생성 중에는 사용자 입력을 박을 수 없으므로 apt-get install 명령세서 -y 옵션을 사용합니다. (yum install도 동일)
+       > 나마지는 nginx 설정
+     - VOLUME : 호스트와 공유할 디렉터리 목록입니다. docker run 명령에서 -v 옵션으로 설정할 수 있습니다.
+       > -v /root/data:/data는 호스트의 /root/data/ 디렉터리를 Docker 컨테이너의 /data 디렉터리에 연결
+     - CMD : 컨테이너가 시작되었을 때 실행할 실행 파일 또는 셰 스크립트 입니다.
+     - WORKDIR : CMD 에서 설정한 실행파일이 실행괼 디렉터리 입니다.
+     - EXPOST : 호스트와 연결할 포트 번호 입니다.
+
      ```bash
      FROM ubuntu:14.04
      LABEL maintainer="jgi92@naver.com"
@@ -241,3 +252,70 @@ $ sudo yum install docker
      EXPOSE 80
      EXPOSE 433
      ```
+
+- ### 3.2) build 명령으로 이미지 생성하기
+  1. Dockerfile을 작성하였으면, 이미지를 생성합니다. Dockerfile이 저장된 example 디렉터리에서 다음 명령을 실행합니다.
+     ```bash
+     ~$ docker build --tag hello:0.1 .
+     ```
+     docker build <옵션> <Dockerfile 경로> 형식입니다. --tag 옵션으로 이미지 이름과 태그를 설정할 수 있입니다. 이미지 이르만 설정하면 태그는 lastest로 설정됩니다.
+  2. 실행하기
+     ```bash
+     $ docker run --name <실행시키고 싶은 이름> -d -p 80:80 -v /root/data:/data <이지미 경로>
+     ```
+     - -d 옵션은 컨테이너를 백그라운드로 실행합니다.
+     - -p 80:80 옵션으로 호스트의 80번 포스트와 컨테이터의 80번 포트를 연결하고 외부에 노출합니다.
+       이렇게 설정한뒤 80번 포트로 접근하면 접속이 됩니다.
+     - -v /root/data:/data 옵션으로 호스트의 /root/data 디렉터리를 컨테이너의 ./data 디렉터리에 연결 합니다. /root/data 디렉터리에 파일을 넣으면 컨테이너에서 해당 파일을 읽을 수 있습니다.
+
+# 4. 도커 살펴보기
+
+- 이미지와 컨테이너의 정보를 조회하는 방법.
+- 컨테이너에서 파일을 꺼내는 방법.
+- 변경된 파일을 확인하는 방법.
+- 변경 사항을 이미지로 저장하는 방법.
+
+### 4.1) history 명령으로 이미지 히스토리 살펴보기
+
+1. 이미지 히스토리 조회 해보기
+   ```bash
+   $ docker history <이미지 이름> :<태그>
+   ```
+
+### 4.2) cp 명령으로 파일 꺼내기
+
+1. hello-nginx 컨테이너에서 파일 꺼내보기
+
+- docker cp <컨테이너 이름>:<경로> <호스트 경로>
+  ```bash
+  $ docker cp hello-nginx:/etc/nginx/nginx.conf ./
+  ```
+
+### 4.3) commit 명령으로 컨테이너의 변경사항을 이미지로 생성하기
+
+1. docker commit 명령은 컨테이너의 변경 사항을 이미지 파일로 생성한다.
+
+- docker commit <옵션> <컨테이너 이름> <이미지 이름>:<태그> 형식입니다. 컨테이너 이름 대신 컨테이너 ID를 사용해도 됩니다.
+- -a "jgi92@naver.com"과 -m "add hello.txt" 옵션으로 커밋한 사용자와 로그 메시지를 설정합니다. hello-nginx 컨테이너를 hello:0.2 이미지로 생성
+  ```bash
+  $ docker commit -a <작성 maintainer> -m "<로그파일.txt>" <컨테이너 이름> <뉴 이미지 이름>:<태그>
+  ```
+
+### 4.4) diff 명령으로 컨테이너에서 변경된 파일 확인하기
+
+1. docker diff 명령은 컨테이너가 실행되면서 변경된 파일 목록을 출력
+
+- A(추가된 파일), C(변경된 파일), D(삭제된 파일)
+- docker diff <컨테이너 이름>
+  ```bash
+  $ docker diff happygi
+  ```
+
+### 4.5) inspect 명령으로 세부 정보 확인하기
+
+1. docker inspect 명령은 이미지와 컨테이너의 세부 정보를 출력합니다.
+
+- docker inspect <컨테이너 이름>
+  ```bash
+  docker inspect happygi
+  ```
