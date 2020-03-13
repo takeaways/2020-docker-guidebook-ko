@@ -61,19 +61,19 @@ $ sudo yum install docker
   ```
 - docker stop <컨테이너 이름> 컨테이너 정지 시키기
   ```bash
-    $ docker stop hello
+  $ docker stop hello
   ```
 - docker stop <컨테이너 이름> 컨테이너 정지 시키기
   ```bash
-    $ docker stop hello
+  $ docker stop hello
   ```
 - docker rm <컨테이너 이름> 컨테이너 삭제하기
   ```bash
-    $ docker rm hello
+  $ docker rm hello
   ```
 - docker rmi <이미지 이름>:<태그> 이미지 삭제하기
   ```bash
-    $ docker rm hello
+  $ docker rm hello
   ```
 
 ### 3. 도커 이미지 생성하기
