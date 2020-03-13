@@ -81,17 +81,15 @@ $ sudo yum install docker
 - 3.1) Bash 익히기
   | 문법 | 설명 |
   | :-------------: |:-------------|
-  | > | 출력 리다이렉션, 명령 실행의 표춘 출력(stdout)을 파일로 저장합니다. 유닉스계열 운영체제는 장치도 파일로 처리하기 때문에 명령 실행 결과를 특정 장치로 보낼 수도 있습니다. <br/><pre><code></code> $ echo "hello" > ./hello.txt </code></pre><pre><code> $ echo "hello" > /dev/null|</code></pre>
-  | < | 입력 리다이렉션, 파일의 내용을 읽어 명령의 표준 입력(stdin)으로 사용합니다. <br/> <pre><code>$ cat < ./hello.txt </code></pre>|  
-  | >>              | 명령 실행의 표준 출력(stdout)을 파일에 추가합니다. >는 이미 있는 파일에 내용을 덮어 쓰지만 >>는 파일 뒷 부분에 내용을 추가 합니다. <br/> <pre><code>$ echo "world" >> ./hello.txt</code></pre> |
+
   | 2> | 명령 실행의 표준 에러(stderr)를 파일로 저장합니다.|
   | 2>> | 명령 실행의 표준 에러(stderr)를 파일에 추가합니다.|
   |&> | 표준 출려과 표준 에러를 모두 파일로 저장합니다.|
-  |1>$2             | 표준 출력을 표준 에러로 보냅니다. echo 명령으로 문자열을 표준 출력으로 출력했지만 표준 에러로 보냈기 때문에 변수에는 문자열이 들어가지 않습니다. <br/> <pre><code> $ hello=$(echo "Hello WOrld" 1>&2)<br/> $ echo \$hello</code></pre>|
+  |1>$2 | 표준 출력을 표준 에러로 보냅니다. echo 명령으로 문자열을 표준 출력으로 출력했지만 표준 에러로 보냈기 때문에 변수에는 문자열이 들어가지 않습니다. <br/> <pre><code> $ hello=$(echo "Hello WOrld" 1>&2)<br/> $ echo \$hello</code></pre>|
   |2>&1 | 표준 에러를 표준 출력으로 보냅니다. abcd라는 명령은 없음으로 에러가 발생하지만 에러를 표준출력으로 보낸 뒤 다시 /dev/null로 보냈기 떄문에 아무것도 출력 되지 않습니다. <br/> <pre><code>$ abcd > /dev/null 2>&1</code></pre>|
-  | \|              | 파이프 명령 실행의 표준 출력을 다른 명령의 표준 입력으로 보냅니다. 즉 첫 번쨰 명령의 출력 같을 두 번 쨰 명령에서 처리합니다. <br/><pre><code> $ ls -al \| grep.txt </code></pre>|
+  | \| | 파이프 명령 실행의 표준 출력을 다른 명령의 표준 입력으로 보냅니다. 즉 첫 번쨰 명령의 출력 같을 두 번 쨰 명령에서 처리합니다. <br/><pre><code> $ ls -al \| grep.txt </code></pre>|
   |\$ | bash의 변수 입니다. 값을 저장할 떄는 $를 붙이지 않고, 변수를 가져다 쓸 떄만 \$를 붙입니다. <br/> <pre><code> $ hello= "Hello World" <br/> $ echo $hello <br/> Hello World</code></pre>|
-  |$()              | 명령 실행결과를 변수화합니다. 명령 실행 결과를 변수에 저장하거나 다른 명령의 매개 변수로 넘겨줄 떄 사용합니다. 또는 문자열 안에 명령의 실행 결과를 넣을 때 사용합니다. <br/><pre><code> $ docker rm $(docker ps -aq) <br/> $ echo \$(date) </code></pre>|
+  |$() | 명령 실행결과를 변수화합니다. 명령 실행 결과를 변수에 저장하거나 다른 명령의 매개 변수로 넘겨줄 떄 사용합니다. 또는 문자열 안에 명령의 실행 결과를 넣을 때 사용합니다. <br/><pre><code> $ docker rm \$(docker ps -aq) <br/> \\\$ echo \\\\\$(date) </code></pre>|
   |`` | $()꽈 마찬가지로 명령 실행 결과를 변수화합니다. <br/><pre><code> $ docker rm `docker ps -aq` <br/> $ echo \`date\` </code></pre>|
   |&&               | 한 줄에서 명령을 여러 개 실행합니다. 단 앞에 있는 멸령이 에러 없이 실행되어야 뒤에 오는 명령이 실행됩니다. <br/><pre><code> $ make && make install </code></pre>|
   |; | 한 줄에서 명령을 여러 개 실행합니다. 단 앞에 있는 명령이 에러 없이 실행되어야 뒤에 오는 명령이 실행됩니다. <br/><pre><code> $ false; echo "Hello" </code></pre>|
@@ -122,6 +120,12 @@ $ sudo yum install docker
   <td>></td><td>출력 리다이렉션, 명령 실행의 표춘 출력(stdout)을 파일로 저장합니다. 유닉스계열 운영체제는 장치도 파일로 처리하기 때문에 명령 실행 결과를 특정 장치로 보낼 수도있습니다<pre><code>$ echo "hello" > ./hello.txt
   $ echo "hello" > /dev/null</code></pre>
   </td>
+  </tr>
+  <tr>
+  <td><</td><td>입력 리다이렉션, 파일의 내용을 읽어 명령의 표준 입력(stdin)으로 사용합니다.<pre><code>$ cat < ./hello.txt</code></pre></td>
+  </tr>
+  <tr>
+  <td>>></td><td>명령 실행의 표준 출력(stdout)을 파일에 추가합니다. >는 이미 있는 파일에 내용을 덮어 쓰지만 >>는 파일 뒷 부분에 내용을 추가 합니다.<pre><code>$ echo "world" >> ./hello.txt</code></pre></td>
   </tr>
   </tbody>
   </table>
