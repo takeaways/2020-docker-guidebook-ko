@@ -103,3 +103,4 @@ $ sudo yum install docker
   | \\ |한 줄로된 명령을 여러 줄로 표현할 때 사용합니다. <br/> $ dockerrun -d -name hello busybox:latest <br/> $ docker run \\<br/>-d \\<br/>--name hello \\<br/>busybox:latest |
   |{1..10}|연속된 숫자를 표현합니다. {시작숫자..끝 숫자} 형식|
   |{문자열1, 문자열2}|{}안에 문자열을 여러 개 지정하여 명령 실행 횟수를 줄입니다. 다음은 hello.txt, world.txt 두 파일을 한 번에 hello-dir디렉 터리에 복사합니다. <br/>\$ cp ./{hello.txt, world.txt} hello-dir/ |
+  |if| if 조건문입니다. 변수와 변수끼리 또는 문자열과 비교할 때 사용합니다. <br/> if [$a -eq $b]; then <br/>echo \$a <br/>fi|
