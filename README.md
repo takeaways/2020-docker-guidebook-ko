@@ -121,12 +121,7 @@ $ sudo yum install docker
     <td>></td>
     <td>
       출력 리다이렉션, 명령 실행의 표춘 출력(stdout)을 파일로 저장합니다. 유닉스계열 운영체제는 장치도 파일로 처리하기 때문에 명령 실행 결과를 특정 장치로 보낼 수도 있습니다. 
-      <pre>
-      <code>
-        $ echo "hello" > ./hello.txt
-        $ echo "hello" > /dev/null
-      </code>
-      </pre>
+      <pre><code>$ echo "hello" > ./hello.txt <br/>$ echo "hello" > /dev/null</code></pre>
     </td>
    </tbody>
   </table>
