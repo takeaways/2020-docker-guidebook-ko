@@ -40,3 +40,31 @@ $ brew cask install docker
 
 1. docker build -t [내 이름/이미지 이름:버전]
 2. docker images
+
+### 컨테이너 만들어 보기
+
+1. docker run 이미지:버전
+
+   - 파일이 실행된 다음에 할일이 없으면 종료된다.
+   - docker ps 명령을 통하여 동작하고 있는 컨테이너를 확인가능하다.
+
+2. docker exec -it containerID bash
+
+   - 컨테이너 안으로 들어가보기
+
+### Docker Hub 다른 사람이 만들어둔 이미지로 컨테이너 실행
+
+1. docker pull busybox
+
+```bash
+$docker pull busybox
+$docker run -it busybox
+$
+```
+
+### Docker Port Binding
+
+1. nginx : webserver
+2. 요청하는 자원을 반환하는 역할을한다.
+3. config
+4. docker run 이미지이름 //없으면 허브에서 자동으로 받아온다.
