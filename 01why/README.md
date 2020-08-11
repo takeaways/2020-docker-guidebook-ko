@@ -27,6 +27,16 @@ $ brew cask install docker
    ```
 2. Dockerfile(작업지시서) 만들기
 
-- 어떤 OS
+- 어떤 OS : [FROM 도커의 이미지]
 - 어떤 명령어
-- 어떤 파일들을 컨테이너 안으로 가져갈거야.
+- 어떤 파일들을 컨테이너 안으로 가져갈거야. : 컨테이너 안이 비워져 있기 때문에 호스트 pc에 있는 내용을 도커 컨테이너 안으로 가져 들어가서 작업을 실행할 수 있도록 처리 해줘야 한다.
+
+  ```Dokerfile
+  FROM centos:7 [layer]
+  WORKDIR /app #root(/)를 기준으로 [/app] 경로가 .이된다.
+  COPY name.txt .
+  CMD ["cat name.txt"]
+  ```
+
+1. docker build -t [내 이름/이미지 이름:버전]
+2. docker images
