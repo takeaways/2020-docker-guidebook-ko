@@ -68,3 +68,35 @@ $
 2. 요청하는 자원을 반환하는 역할을한다.
 3. config
 4. docker run 이미지이름 //없으면 허브에서 자동으로 받아온다.
+
+```bash
+        //내부 포트:호스트 포트
+$docker run -p 80:80 nginx
+```
+
+### Docker Volume Mount
+
+1. 컨테이너 안에있는 영역을 -> 호스트 특정영역에
+
+   - 컨테이너에 있는 영역에서 쌓은 정보가 호스트 영역에도 같이 쌓인다.
+
+```bash
+              //호스트영역:컨테이너영역
+$docker run -v ${PWD}/data:/data/db mongo
+```
+
+### 컨테이너 삭제
+
+    1. redis [key:value]
+    2. docker run -p 6379:6379 redis
+    3. redis-cli
+    4. set key value
+    5. get key
+
+### 지속적 통합(CI)
+
+1. Continuous Integration
+2. code ---- 테스트 ---- git
+3. circle-ci travis-ci
+
+### 지속적 배포(CD)
