@@ -35,11 +35,11 @@ $ brew cask install docker
   FROM centos:7 [layer]
   WORKDIR /app #root(/)를 기준으로 [/app] 경로가 .이된다.
   COPY name.txt .
-  CMD ["cat name.txt"]
+  CMD "cat name.txt"
   ```
 
-1. docker build -t [내 이름/이미지 이름:버전]
-2. docker images
+> 1. docker build -t [내 이름/이미지 이름:버전]
+> 2. docker images
 
 ### 컨테이너 만들어 보기
 
